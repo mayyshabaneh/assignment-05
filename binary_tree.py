@@ -77,16 +77,17 @@ class BinTree:
 
     def delete(self,value):
         if self.search(value) is True :
-            temp = self.root
-            while self.root :
-                if temp.value == value:
-                    del(temp.value)
-                    return
+            queue = [self.root]
+            while queue:
+                temp = queue.pop(0)
+                if value == temp :
+                    del(temp)
                 else :
-                    print ("the value dosnt exist or the tree is empty")
-                return
-
-
+                    queue.append(temp.left)
+                    queue.append(temp.right)
+        else :
+            print ("the value dosnt exist or the tree is empty")
+        return
 
 
 tree = BinTree()
@@ -107,5 +108,5 @@ tree.search(9)
 tree.search(10)
 print("the minimum value is : " , tree.find_min())
 print("the maximum value is : " , tree.find_max())
-tree.delete(5)
-tree.search(5)
+# tree.delete(5)
+# tree.search(5)
